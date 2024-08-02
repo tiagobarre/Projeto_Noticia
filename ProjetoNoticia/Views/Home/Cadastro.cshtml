@@ -1,0 +1,53 @@
+﻿<div class="container">
+
+    <h3>Cadastro Notícia</h3>
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Título</label>
+        <input type="text" id="titulo" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Noticia</label>
+        <textarea class="form-control" id="noticia" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <button type="button" id="submit" class="btn btn-primary">Salvar</button>
+    </div>
+</div>
+
+<script>
+    $('#submit').on('click', function () {
+
+
+        var employee = new Object();
+        employee.Titulo = $('#titulo').val();
+        employee.Texto = $('#noticia').val();
+        employee.UsuarioId = 1;
+        
+        console.log(employee);
+
+        $.ajax({
+            type: 'POST',
+            url: 'https://localhost:44375/CreateNoticia',
+            data: JSON.stringify(employee),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+        }).done(function (data) {
+
+            Swal.fire({
+                title: "Sucesso",
+                text: data.mensagem,
+                icon: "success"
+            });
+
+        })
+
+    });
+
+    function LimparCampos() {
+        $('#usuario').val('')
+        $('#senha').val('')
+        $('#email').val('')
+    }
+</script>
+

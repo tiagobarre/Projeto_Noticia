@@ -1,0 +1,22 @@
+1) Qual fluxo os dados de um formulário em uma View deve percorrer até ser 
+armazenado na fonte de dados em um projeto DDD? 
+
+R: Primeiro os dados são imputados chamando a rota da api passando os valores dos objetos por requisições Ajax com o verbo HttpPOST
+e assim o entity framework salva os dados nas respectivas tabelas.
+
+2) Nossa aplicação necessita que um usuário esteja autenticado para poder navegar 
+nas funcionalidades, em .net, como podemos desenvolver essa autenticação? 
+
+R: Podemos desenvolver um acesso seguro a API usando token JWT e Authorization nas controllers, assim podemos desenvolver uma tela,
+guardar o token que será gerado com os dados do usuário criptografado e assim liberar o acesso as respectivas telas e funções.
+Podemos tbm implantar o Identity 
+
+3) Estamos enfrentando problemas de performance na pagina inicial de um portal que 
+tem muitos acessos. Essa página exibe eventos separados em 6 sessões do html, 
+filtrados, cada sessão, por uma regra de negócio. Trata-se de um projeto MVC, no qual 
+são realizados 6 consultas via ORM para carregar a View que será processada no 
+servidor e disponibilizada ao browser. O que podemos fazer para tentar mitigar esse 
+problema de performance?
+
+R: Criar uma única query de consulta que possa trazer todos os dados que precisamos sem ter que ir 6 vezes ao banco.
+Podemos criar procs, views e etc nessa solução, assim mitigando a quantidade de consultas no banco.

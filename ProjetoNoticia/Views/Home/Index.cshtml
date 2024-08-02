@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">  
+    <h1>Notícias</h1>
+    <div class="row" id="form">      
+    </div>    
+</div>
+
+<div class="text-center">
+    <h1>Tags</h1>
+    <div class="row" id="formTag">
+    </div>
+</div>
+
+<div class="text-center">
+    <h1>Tag Noticia</h1>
+    <div class="row" id="formTagNoticia">
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCadastrarNoticias" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Noticias</h1>        
+            </div>
+            <div class="modal-body">
+               
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Título</label>
+                    <input type="text" id="titulo" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Noticia</label>
+                    <textarea class="form-control" id="noticia" rows="3" required></textarea>
+                </div>
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="" onclick="LimparCampos()">Fechar</button>
+                <button type="button" id="submit" class="btn btn-primary" data-bs-dismiss="modal" value="0">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCadastrarTag" tabindex="-1" aria-labelledby="exampleModalLabelTag" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabelTag">Cadastrar Noticias</h1>
+            </div>
+            <div class="modal-body">
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInputTag" class="form-label">Descrição</label>
+                    <input type="text" id="descricaoTag" class="form-control" required>
+                </div>             
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="" onclick="LimparCamposTag()">Fechar</button>
+                <button type="button" id="submitTag" class="btn btn-primary" data-bs-dismiss="modal" value="0">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalCadastrarTagNoticia" tabindex="-1" aria-labelledby="exampleModalLabelTagNoticia" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabelTagNoticia">Associar Tags Noticias</h1>
+            </div>
+            <div class="modal-body">
+                <label for="exampleFormControlInputTagNoticia" class="form-label">Notícia</label>
+                <select class="form-select" aria-label="Default select example" id="noticiaId" required>                   
+                </select>
+                <br />
+                <label for="exampleFormControlInputTagNoticia2" class="form-label">Tag</label>
+                <select class="form-select" aria-label="Default select example" id="tagId" required>                   
+                </select>              
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="">Fechar</button>
+                <button type="button" id="submitTagNoticia" class="btn btn-primary" data-bs-dismiss="modal" value="0">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
