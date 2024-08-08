@@ -1,19 +1,24 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using ProjetoNoticia.DAO;
-using ProjetoNoticia.Repositories;
+using ProjetoNoticia.Repository.Interfaces;
 using System.Configuration;
 using ProjetoNoticia.Controllers;
 using System.Security.Cryptography;
+using ProjetoNoticia.Repository.Repositories;
+using ProjetoNoticia.Infra.DAO;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ProjetoNoticiaContext>();
+
+builder.Services.AddDbContext<ProjetoNoticiaContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("db")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<ProjetoNoticiaContext>();
-builder.Services.AddScoped<NoticiaRepository, NoticiaRepository>();
+builder.Services.AddScoped<INoticiaRepository, NoticiaRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 

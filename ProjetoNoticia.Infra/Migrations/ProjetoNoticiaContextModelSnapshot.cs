@@ -2,20 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProjetoNoticia.DAO;
+using ProjetoNoticia.Infra.DAO;
 
 #nullable disable
 
-namespace ProjetoNoticia.Migrations
+namespace ProjetoNoticia.Infra.Migrations
 {
     [DbContext(typeof(ProjetoNoticiaContext))]
-    [Migration("20240801052150_InitialCreate")]
-    partial class InitialCreate
+    partial class ProjetoNoticiaContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,7 +21,7 @@ namespace ProjetoNoticia.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ProjetoNoticia.Models.Entidades.Noticia", b =>
+            modelBuilder.Entity("ProjetoNoticia.Domain.Entidades.Noticia", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,7 +44,7 @@ namespace ProjetoNoticia.Migrations
                     b.ToTable("Noticia", (string)null);
                 });
 
-            modelBuilder.Entity("ProjetoNoticia.Models.Entidades.NoticiaTag", b =>
+            modelBuilder.Entity("ProjetoNoticia.Domain.Entidades.NoticiaTag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,7 +63,7 @@ namespace ProjetoNoticia.Migrations
                     b.ToTable("NoticiaTag", (string)null);
                 });
 
-            modelBuilder.Entity("ProjetoNoticia.Models.Entidades.Tag", b =>
+            modelBuilder.Entity("ProjetoNoticia.Domain.Entidades.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -83,7 +80,7 @@ namespace ProjetoNoticia.Migrations
                     b.ToTable("Tag", (string)null);
                 });
 
-            modelBuilder.Entity("ProjetoNoticia.Models.Entidades.Usuario", b =>
+            modelBuilder.Entity("ProjetoNoticia.Domain.Entidades.Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

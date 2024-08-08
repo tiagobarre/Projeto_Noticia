@@ -1,19 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NuGet.Common;
-using ProjetoNoticia.DAO;
-using ProjetoNoticia.Entidades;
-using ProjetoNoticia.Models.DTO;
-using System.Security.Cryptography;
+using ProjetoNoticia.Infra.DAO;
+using ProjetoNoticia.Domain.Entidades;
+using ProjetoNoticia.Domain.Models.DTO;
+using ProjetoNoticia.Repository.Interfaces;
 
-namespace ProjetoNoticia.Repositories
+namespace ProjetoNoticia.Repository.Repositories
 {
-    public class NoticiaRepository
+    public class NoticiaRepository : INoticiaRepository
     {
-        private ProjetoNoticiaContext _context;       
+        private readonly ProjetoNoticiaContext _context;
 
         public NoticiaRepository(ProjetoNoticiaContext context)
         {
-            _context = context;           
+            _context = context;
         }
 
         #region ListarAll
@@ -98,16 +97,16 @@ namespace ProjetoNoticia.Repositories
         {
             try
             {
-                 var resp = _context.Usuario.Where(x => request.Nome.Contains(x.Nome)).FirstOrDefault();
+                var resp = _context.Usuario.Where(x => request.Nome.Contains(x.Nome)).FirstOrDefault();
 
-                if(resp != null)
+                if (resp != null)
                 {
                     resp.Senha = request.Senha;
                     resp.Nome = request.Nome;
                     resp.Email = request.Email;
 
                     _context.Entry(resp).State = EntityState.Modified;
-                }                                
+                }
                 else
                     _context.Usuario.Add(request);
 
@@ -278,7 +277,7 @@ namespace ProjetoNoticia.Repositories
             }
 
         }
-       
+
         #endregion
 
 

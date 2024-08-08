@@ -1,4 +1,4 @@
-﻿namespace ProjetoNoticia.Models.DTO
+﻿namespace ProjetoNoticia.Domain.Models.DTO
 {
     public class TratamentoDTO
     {

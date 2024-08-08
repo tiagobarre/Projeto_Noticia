@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoNoticia.Entidades;
-using ProjetoNoticia.Models.DTO;
-using ProjetoNoticia.Repositories;
+using ProjetoNoticia.Domain.Entidades;
+using ProjetoNoticia.Domain.Models.DTO;
+using ProjetoNoticia.Repository.Interfaces;
 using System.Diagnostics;
 
 namespace ProjetoNoticia.Controllers
 {
     public class HomeController : Controller
     {        
-        private readonly NoticiaRepository _noticiaRepository;   
+        private readonly INoticiaRepository _noticiaRepository;   
 
-        public HomeController(NoticiaRepository noticiaRepository)
+        public HomeController(INoticiaRepository noticiaRepository)
         {
             _noticiaRepository = noticiaRepository;            
         }

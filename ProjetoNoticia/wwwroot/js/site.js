@@ -2,6 +2,8 @@
     LoadPage()
 });
 
+let baseURL = 'http://localhost:5198/';
+
 $('#submit').on('click', function () {
     var employee = new Object();
     employee.Titulo = $('#titulo').val();
@@ -11,7 +13,7 @@ $('#submit').on('click', function () {
 
     $.ajax({
         type: 'POST',
-        url: 'https://localhost:44375/CreateNoticia',
+        url: baseURL + 'CreateNoticia',
         data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -30,7 +32,7 @@ $('#submitTag').on('click', function () {
  
     $.ajax({
         type: 'POST',
-        url: 'https://localhost:44375/CreateTag',
+        url: baseURL + 'CreateTag',
         data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -50,7 +52,7 @@ $('#submitTagNoticia').on('click', function () {
  
     $.ajax({
         type: 'POST',
-        url: 'https://localhost:44375/CreateNoticiaTag',
+        url: baseURL + 'CreateNoticiaTag',
         data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -71,8 +73,10 @@ function LoadPage() {
     $('#formTagNoticia').empty();
     $.ajax({
         type: "GET",
-        url: 'https://localhost:44375/GetAllNoticia',
+        url: baseURL + 'GetAllNoticia',
         success: function (data) {
+            $('#cadastrarTags').show();
+            $('#associarNotTag').show();
             $.each(data, function (key, value) {
                 $('#form').append('<div class="card text-bg-primary mb-3" style="max-width: 18rem; background-color:wheat">' +
                     '<div class= "card-header">' +
@@ -84,13 +88,18 @@ function LoadPage() {
                     '<p class= "card-text"> ' + value.texto + '</p></div></div>&nbsp;');
             });
 
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            $('#cadastrarTags').hide();
+            $('#associarNotTag').hide();
         }
     });
     
     $.ajax({
         type: "GET",
-        url: 'https://localhost:44375/GetAllTags',
+        url: baseURL + 'GetAllTags',
         success: function (data) {
+            $('#associarNotTag').show();
             $.each(data, function (key, value) {
                 $('#formTag').append('<div class="card text-bg-primary mb-3" style="max-width: 18rem; background-color:wheat">' +
                     '<div class= "card-header">' +
@@ -101,12 +110,15 @@ function LoadPage() {
                     '<p class= "card-text"> ' + value.descricao + '</p></div></div>&nbsp;');
             });
 
+        },
+        error: function (xhr, textStatus, errorThrown) {            
+            $('#associarNotTag').hide();
         }
     });
 
     $.ajax({
         type: "GET",
-        url: 'https://localhost:44375/GetAllNoticiaTag',
+        url: baseURL + 'GetAllNoticiaTag',
         success: function (data) {
             $.each(data, function (key, value) {
                 $('#formTagNoticia').append('<div class="card text-bg-primary mb-3" style="max-width: 18rem; background-color:wheat">' +
@@ -126,14 +138,14 @@ function LoadPage() {
 }
 
 function LoadNoticiaTag() {
-    $.get("https://localhost:44375/GetAllTags", function (data) {
+    $.get(baseURL + "GetAllTags", function (data) {
         $(data).each(function () {
             var tags = new Option(this.descricao, this.id);
             $('#tagId').append(tags);
         });
     });
 
-    $.get("https://localhost:44375/GetAllNoticia", function (data) {
+    $.get(baseURL + "GetAllNoticia", function (data) {
         $(data).each(function () {
             var tags = new Option(this.titulo, this.id);
             $('#noticiaId').append(tags);
@@ -145,7 +157,7 @@ function deleteNoticia(id) {
 
     $.ajax({
         type: 'DELETE',
-        url: 'https://localhost:44375/DeteleNoticia?id=' + id + '',
+        url: baseURL + 'DeteleNoticia?id=' + id + '',
         //data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -160,7 +172,7 @@ function deleteTag(id) {
 
     $.ajax({
         type: 'DELETE',
-        url: 'https://localhost:44375/DeteleTag?id=' + id + '',
+        url: baseURL + 'DeteleTag?id=' + id + '',
         //data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -175,7 +187,7 @@ function deleteTagNoticia(id) {
 
     $.ajax({
         type: 'DELETE',
-        url: 'https://localhost:44375/DeteleTagNoticia?id=' + id + '',
+        url: baseURL + 'DeteleTagNoticia?id=' + id + '',
         //data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -189,7 +201,7 @@ function deleteTagNoticia(id) {
 function EditarNoticia(id) {
     $.ajax({
         type: 'GET',
-        url: 'https://localhost:44375/GetByIdNoticia?id=' + id + '',
+        url: baseURL + 'GetByIdNoticia?id=' + id + '',
         //data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -204,7 +216,7 @@ function EditarNoticia(id) {
 function EditarTag(id) {
     $.ajax({
         type: 'GET',
-        url: 'https://localhost:44375/GetByIdTag?id=' + id + '',
+        url: baseURL + 'GetByIdTag?id=' + id + '',
         //data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -219,7 +231,7 @@ function EditarTagNoticia(id) {
 
     $.ajax({
         type: 'GET',
-        url: 'https://localhost:44375/GetByIdTagNoticia?id=' + id + '',
+        url: baseURL + 'GetByIdTagNoticia?id=' + id + '',
         //data: JSON.stringify(employee),
         contentType: "application/json; charset=utf-8",
         dataType: "json",

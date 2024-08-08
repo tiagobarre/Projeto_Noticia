@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.OpenApi;
 
-namespace ProjetoNoticia.Entidades
+namespace ProjetoNoticia.Domain.Entidades
 {
     [Table("Noticia")]
     public class Noticia

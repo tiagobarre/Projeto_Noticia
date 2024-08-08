@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ProjetoNoticia.Models.DTO
+﻿
+namespace ProjetoNoticia.Domain.Models.DTO
 {
     public class UsuarioRequestDTO
     {

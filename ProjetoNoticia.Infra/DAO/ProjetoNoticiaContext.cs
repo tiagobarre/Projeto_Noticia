@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjetoNoticia.Entidades;
-using System.Configuration;
+using Microsoft.Extensions.Configuration;
+using ProjetoNoticia.Domain.Entidades;
+using System.IO;
 
-namespace ProjetoNoticia.DAO
+namespace ProjetoNoticia.Infra.DAO
 {
     public class ProjetoNoticiaContext : DbContext
     {
@@ -14,14 +15,11 @@ namespace ProjetoNoticia.DAO
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json")
-                    .Build();
-                var connectionString = configuration.GetConnectionString("db");
+            {                   
+                var connectionString = "Server=localhost;Database=Projeto_Noticia;Trusted_Connection=true;TrustServerCertificate=True;";
                 optionsBuilder.UseSqlServer(connectionString);
             }
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

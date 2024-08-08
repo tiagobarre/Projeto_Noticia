@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace ProjetoNoticia.Migrations
+namespace ProjetoNoticia.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialProjetoNoticia : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -66,13 +66,8 @@ namespace ProjetoNoticia.Migrations
                 {
                     table.PrimaryKey("PK_Usuario", x => x.Id);
                 });
-
-            migrationBuilder.Sql("INSERT INTO Usuario(Nome,Email,Senha) Values ('User','1234','teste@teste')");
-            migrationBuilder.Sql("INSERT INTO Noticia(Titulo,Texto,UsuarioId) Values ('Noticia','Primeira','1')");
-
         }
 
-               
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
